@@ -1,4 +1,3 @@
-# $Revision: 1.29 $, $Date: 2012/03/09 15:51:17 $
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
