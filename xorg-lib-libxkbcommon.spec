@@ -8,17 +8,16 @@ Group:		X11/Libraries
 Source0:	http://xkbcommon.org/download/libxkbcommon-%{version}.tar.bz2
 # Source0-md5:	2be3d4a255d02c7d46fc6a9486f21f6a
 URL:		http://xkbcommon.org/
-BuildRequires:	autoconf >= 2.60
+BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake
 BuildRequires:	bison
+BuildRequires:	doxygen
 BuildRequires:	flex
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	pkgconfig >= 1:0.19
-BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-proto-kbproto-devel >= 1.0.4
 BuildRequires:	xorg-proto-xproto-devel
 BuildRequires:	xorg-util-util-macros >= 1.8
-BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -85,6 +84,8 @@ rm -rf $RPM_BUILD_ROOT
 
 # obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libxkbcommon.la
+# packaged as %doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/libxkbcommon
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -94,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING README
+%doc COPYING ChangeLog README TODO
 %attr(755,root,root) %{_libdir}/libxkbcommon.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libxkbcommon.so.0
 
