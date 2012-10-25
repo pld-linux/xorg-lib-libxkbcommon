@@ -1,25 +1,23 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	0.1.0
-%define	snap	20120408
-Release:	0.%{snap}.1
+Version:	0.2.0
+Release:	1
 License:	MIT
 Group:		X11/Libraries
-# git clone git://people.freedesktop.org/xorg/lib/libxkbcommon.git
-Source0:	libxkbcommon.tar.xz
-# Source0-md5:	3474ac974f655ab23b87acac520c02b7
-URL:		http://xorg.freedesktop.org/
+Source0:	http://xkbcommon.org/download/libxkbcommon-%{version}.tar.bz2
+# Source0-md5:	2be3d4a255d02c7d46fc6a9486f21f6a
+URL:		http://xkbcommon.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	libtool >= 2:2.0
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-proto-kbproto-devel >= 1.0.4
 BuildRequires:	xorg-proto-xproto-devel
 BuildRequires:	xorg-util-util-macros >= 1.8
-BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -67,7 +65,7 @@ Biblioteka xkbcommon.
 Pakiet zawiera statyczną bibliotekę libxkbcommon.
 
 %prep
-%setup -q -n libxkbcommon
+%setup -q -n libxkbcommon-%{version}
 
 %build
 %{__libtoolize}
@@ -102,6 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%doc doc/html/*
 %attr(755,root,root) %{_libdir}/libxkbcommon.so
 %{_includedir}/xkbcommon
 %{_pkgconfigdir}/xkbcommon.pc
