@@ -1,12 +1,12 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	0.4.2
+Version:	0.4.3
 Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	http://xkbcommon.org/download/libxkbcommon-%{version}.tar.xz
-# Source0-md5:	4b717adce41c8305258e99a9b396330a
+# Source0-md5:	26c57ff21438ed45de2a4ca609177db9
 URL:		http://xkbcommon.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake
