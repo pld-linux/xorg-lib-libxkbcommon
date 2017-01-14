@@ -1,13 +1,17 @@
+#
+# Conditional build:
+%bcond_without	tests	# check target
+#
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	0.5.0
-Release:	3
+Version:	0.7.0
+Release:	1
 License:	MIT
 Group:		X11/Libraries
-Source0:	http://xkbcommon.org/download/libxkbcommon-%{version}.tar.xz
-# Source0-md5:	2e1faeafcc609c30af3a561a91e84158
-URL:		http://xkbcommon.org/
+Source0:	https://xkbcommon.org/download/libxkbcommon-%{version}.tar.xz
+# Source0-md5:	61ba550fc529ea4d6f9faa2cad62c95f
+URL:		https://xkbcommon.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake
 BuildRequires:	bison
@@ -21,6 +25,13 @@ BuildRequires:	xorg-proto-kbproto-devel >= 1.0.4
 BuildRequires:	xorg-proto-xproto-devel
 BuildRequires:	xorg-util-util-macros >= 1.16
 BuildRequires:	xz
+%if %{with tests}
+# wayland-client, wayland-scanner
+BuildRequires:	wayland-devel >= 1.2
+BuildRequires:	wayland-protocols >= 1.0
+BuildRequires:	xorg-app-xkbcomp
+BuildRequires:	xorg-xserver-Xvfb
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -124,6 +135,10 @@ Dokumentacja API bibliotek libxkbcommon.
 
 %{__make}
 
+%if %{with tests}
+%{__make} check
+%endif
+
 %install
 rm -rf $RPM_BUILD_ROOT
 
@@ -146,7 +161,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING NEWS README.md
+%doc LICENSE NEWS README.md
 %attr(755,root,root) %{_libdir}/libxkbcommon.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libxkbcommon.so.0
 
