@@ -5,21 +5,20 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	0.8.4
+Version:	0.10.0
 Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	https://xkbcommon.org/download/libxkbcommon-%{version}.tar.xz
-# Source0-md5:	3c4409058dfd203f641a563358e0187d
+# Source0-md5:	2d9ad3a46b317138b5e72a91cf105451
 URL:		https://xkbcommon.org/
-BuildRequires:	autoconf >= 2.62
-BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	doxygen
 BuildRequires:	flex
-BuildRequires:	libtool >= 2:2.0
+BuildRequires:	meson >= 0.41.0
 BuildRequires:	libxcb-devel >= 1.10
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-proto-kbproto-devel >= 1.0.4
 BuildRequires:	xorg-proto-xproto-devel
@@ -126,27 +125,19 @@ Dokumentacja API bibliotek libxkbcommon.
 %setup -q -n libxkbcommon-%{version}
 
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure
+%meson build
 
-%{__make}
+%ninja_build -C build
 
 %if %{with tests}
-%{__make} check
+%ninja_test -C build
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
-# obsoleted by pkg-config
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libxkbcommon*.la
 # packaged as %doc in -apidocs
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/libxkbcommon
 
@@ -197,4 +188,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files apidocs
 %defattr(644,root,root,755)
-%doc doc/html/*
+%doc build/html/*
