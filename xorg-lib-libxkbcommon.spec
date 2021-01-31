@@ -19,7 +19,7 @@ BuildRequires:	libxcb-devel >= 1.10
 BuildRequires:	libxml2-devel
 BuildRequires:	meson >= 0.49.0
 BuildRequires:	pkgconfig >= 1:0.19
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-proto-kbproto-devel >= 1.0.4
 BuildRequires:	xorg-proto-xproto-devel
@@ -126,9 +126,7 @@ Statyczna biblioteka libxkbcommon-x11.
 Summary:	API documentation for libxkbcommon libraries
 Summary(pl.UTF-8):	Dokumentacja API bibliotek libxkbcommon
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description apidocs
 API documentation for libxkbcommon libraries.
