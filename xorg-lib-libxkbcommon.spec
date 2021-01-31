@@ -5,18 +5,19 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	0.10.0
+Version:	1.0.3
 Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	https://xkbcommon.org/download/libxkbcommon-%{version}.tar.xz
-# Source0-md5:	2d9ad3a46b317138b5e72a91cf105451
+# Source0-md5:	bd0ff892fe937e39ec3bb4daeb348f76
 URL:		https://xkbcommon.org/
 BuildRequires:	bison
 BuildRequires:	doxygen
 BuildRequires:	flex
-BuildRequires:	meson >= 0.41.0
 BuildRequires:	libxcb-devel >= 1.10
+BuildRequires:	libxml2-devel
+BuildRequires:	meson >= 0.49.0
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
@@ -67,6 +68,20 @@ This package contains the static libxkbcommon library.
 
 %description static -l pl.UTF-8
 Pakiet zawiera statyczną bibliotekę libxkbcommon.
+
+%package tools
+Summary:	Tools to interact with XKB keymaps
+Summary(pl.UTF-8):	Narzędzia do współpracy z mapowaniami klawiszy XKB
+Group:		Applications
+Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-x11 = %{version}-%{release}
+Requires:	libxkbregistry = %{version}-%{release}
+
+%description tools
+Tools to interact with XKB keymaps.
+
+%description tools -l pl.UTF-8
+Narzędzia do współpracy z mapowaniami klawiszy XKB.
 
 %package x11
 Summary:	X11 support for XKB library
@@ -121,6 +136,43 @@ API documentation for libxkbcommon libraries.
 %description apidocs -l pl.UTF-8
 Dokumentacja API bibliotek libxkbcommon.
 
+%package -n libxkbregistry
+Summary:	Library to query available RMLVO
+Summary(pl.UTF-8):	Biblioteka do odpytywania dostępnych RMLVO
+Group:		Development/Libraries
+
+%description -n libxkbregistry
+Library to query available RMLVO.
+
+%description -n libxkbregistry -l pl.UTF-8
+Biblioteka do odpytywania dostępnych RMLVO.
+
+%package -n libxkbregistry-devel
+Summary:	Header files for libxkbregistry library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libxkbregistry
+Group:		Development/Libraries
+Requires:	libxkbregistry = %{version}-%{release}
+
+%description -n libxkbregistry-devel
+This package contains the header files needed to develop programs that
+use libxkbregistry.
+
+%description -n libxkbregistry-devel -l pl.UTF-8
+Pakiet zawiera pliki nagłówkowe niezbędne do kompilowania programów
+używających biblioteki libxkbregistry.
+
+%package -n libxkbregistry-static
+Summary:	Static libxkbregistry library
+Summary(pl.UTF-8):	Biblioteka statyczna libxkbregistry
+Group:		Development/Libraries
+Requires:	libxkbregistry-devel = %{version}-%{release}
+
+%description -n libxkbregistry-static
+This package contains the static libxkbregistry library.
+
+%description -n libxkbregistry-static -l pl.UTF-8
+Pakiet zawiera statyczną bibliotekę libxkbregistry.
+
 %prep
 %setup -q -n libxkbcommon-%{version}
 
@@ -150,6 +202,9 @@ rm -rf $RPM_BUILD_ROOT
 %post	x11 -p /sbin/ldconfig
 %postun x11 -p /sbin/ldconfig
 
+%post	-n libxkbregistry -p /sbin/ldconfig
+%postun	-n libxkbregistry -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc LICENSE NEWS README.md
@@ -171,6 +226,24 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libxkbcommon.a
 
+%files tools
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/xkbcli
+%dir %{_libexecdir}/xkbcommon
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-compile-keymap
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-how-to-type
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-evdev
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-wayland
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-x11
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-list
+%{_mandir}/man1/xkbcli.1*
+%{_mandir}/man1/xkbcli-compile-keymap.1*
+%{_mandir}/man1/xkbcli-how-to-type.1*
+%{_mandir}/man1/xkbcli-interactive-evdev.1*
+%{_mandir}/man1/xkbcli-interactive-wayland.1*
+%{_mandir}/man1/xkbcli-interactive-x11.1*
+%{_mandir}/man1/xkbcli-list.1*
+
 %files x11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxkbcommon-x11.so.*.*.*
@@ -189,3 +262,18 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %doc build/html/*
+
+%files -n libxkbregistry
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libxkbregistry.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libxkbregistry.so.0
+
+%files -n libxkbregistry-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libxkbregistry.so
+%{_includedir}/xkbcommon/xkbregistry.h
+%{_pkgconfigdir}/xkbregistry.pc
+
+%files -n libxkbregistry-static
+%defattr(644,root,root,755)
+%{_libdir}/libxkbregistry.a
