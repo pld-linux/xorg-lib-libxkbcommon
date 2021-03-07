@@ -126,7 +126,7 @@ Statyczna biblioteka libxkbcommon-x11.
 Summary:	API documentation for libxkbcommon libraries
 Summary(pl.UTF-8):	Dokumentacja API bibliotek libxkbcommon
 Group:		Documentation
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 API documentation for libxkbcommon libraries.
