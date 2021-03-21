@@ -16,19 +16,18 @@ BuildRequires:	bison
 BuildRequires:	doxygen
 BuildRequires:	flex
 BuildRequires:	libxcb-devel >= 1.10
-BuildRequires:	libxml2-devel
+BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	meson >= 0.49.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	xorg-proto-kbproto-devel >= 1.0.4
-BuildRequires:	xorg-proto-xproto-devel
-BuildRequires:	xorg-util-util-macros >= 1.16
+# wayland-client, wayland-scanner
+BuildRequires:	wayland-devel >= 1.2.0
+BuildRequires:	wayland-protocols >= 1.12
 BuildRequires:	xz
 %if %{with tests}
-# wayland-client, wayland-scanner
-BuildRequires:	wayland-devel >= 1.2
-BuildRequires:	wayland-protocols >= 1.7
 BuildRequires:	xorg-app-xkbcomp
 BuildRequires:	xorg-xserver-Xvfb
 %endif
@@ -76,6 +75,7 @@ Group:		Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-x11 = %{version}-%{release}
 Requires:	libxkbregistry = %{version}-%{release}
+Requires:	wayland >= 1.2.0
 
 %description tools
 Tools to interact with XKB keymaps.
@@ -138,6 +138,7 @@ Dokumentacja API bibliotek libxkbcommon.
 Summary:	Library to query available RMLVO
 Summary(pl.UTF-8):	Biblioteka do odpytywania dostępnych RMLVO
 Group:		Development/Libraries
+Requires:	libxml2 >= 2.0
 
 %description -n libxkbregistry
 Library to query available RMLVO.
@@ -150,6 +151,7 @@ Summary:	Header files for libxkbregistry library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libxkbregistry
 Group:		Development/Libraries
 Requires:	libxkbregistry = %{version}-%{release}
+Requires:	libxml2-devel >= 2.0
 
 %description -n libxkbregistry-devel
 This package contains the header files needed to develop programs that
