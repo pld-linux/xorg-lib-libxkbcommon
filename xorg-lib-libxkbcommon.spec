@@ -5,20 +5,20 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	1.5.0
+Version:	1.6.0
 Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	https://xkbcommon.org/download/libxkbcommon-%{version}.tar.xz
-# Source0-md5:	40f0486b4eb491928ec6616c2ff85120
+# Source0-md5:	90079ab4a0c6fa56dc75abffef9b1bc6
 URL:		https://xkbcommon.org/
-BuildRequires:	bison
+BuildRequires:	bison >= 2.4
 BuildRequires:	doxygen
 BuildRequires:	flex
 BuildRequires:	libstdc++-devel >= 6:4.8.1
 BuildRequires:	libxcb-devel >= 1.10
 BuildRequires:	libxml2-devel >= 2.0
-BuildRequires:	meson >= 0.51.0
+BuildRequires:	meson >= 0.52.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	rpm-build >= 4.6
@@ -178,7 +178,8 @@ Pakiet zawiera statyczną bibliotekę libxkbregistry.
 %setup -q -n libxkbcommon-%{version}
 
 %build
-%meson build
+%meson build \
+	-Dbash-completion-path=%{bash_compdir}
 
 %ninja_build -C build
 
@@ -244,6 +245,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xkbcli-interactive-wayland.1*
 %{_mandir}/man1/xkbcli-interactive-x11.1*
 %{_mandir}/man1/xkbcli-list.1*
+%{bash_compdir}/xkbcli
 
 %files x11
 %defattr(644,root,root,755)
