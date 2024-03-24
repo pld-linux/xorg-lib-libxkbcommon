@@ -1,6 +1,7 @@
 #
 # Conditional build:
-%bcond_without	tests	# check target
+%bcond_without	static_libs	# static libraries
+%bcond_without	tests		# check target
 #
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
@@ -179,6 +180,7 @@ Pakiet zawiera statyczną bibliotekę libxkbregistry.
 
 %build
 %meson build \
+	%{!?with_static_libs:--default-library=shared} \
 	-Dbash-completion-path=%{bash_compdir} \
 	-Denable-docs=true
 
@@ -225,9 +227,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/xkbcommon/xkbcommon-names.h
 %{_pkgconfigdir}/xkbcommon.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libxkbcommon.a
+%endif
 
 %files tools
 %defattr(644,root,root,755)
@@ -261,9 +265,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/xkbcommon/xkbcommon-x11.h
 %{_pkgconfigdir}/xkbcommon-x11.pc
 
+%if %{with static_libs}
 %files x11-static
 %defattr(644,root,root,755)
 %{_libdir}/libxkbcommon-x11.a
+%endif
 
 %files apidocs
 %defattr(644,root,root,755)
@@ -280,6 +286,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/xkbcommon/xkbregistry.h
 %{_pkgconfigdir}/xkbregistry.pc
 
+%if %{with static_libs}
 %files -n libxkbregistry-static
 %defattr(644,root,root,755)
 %{_libdir}/libxkbregistry.a
+%endif
