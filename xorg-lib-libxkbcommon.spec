@@ -5,12 +5,12 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	1.6.0
+Version:	1.7.0
 Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	https://xkbcommon.org/download/libxkbcommon-%{version}.tar.xz
-# Source0-md5:	90079ab4a0c6fa56dc75abffef9b1bc6
+# Source0-md5:	b05b1a0d473189efb2dd995dd944f152
 URL:		https://xkbcommon.org/
 BuildRequires:	bison >= 2.4
 BuildRequires:	doxygen
@@ -179,7 +179,8 @@ Pakiet zawiera statyczną bibliotekę libxkbregistry.
 
 %build
 %meson build \
-	-Dbash-completion-path=%{bash_compdir}
+	-Dbash-completion-path=%{bash_compdir} \
+	-Denable-docs=true
 
 %ninja_build -C build
 
@@ -209,7 +210,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE NEWS README.md
+%doc LICENSE NEWS.md README.md
 %attr(755,root,root) %{_libdir}/libxkbcommon.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libxkbcommon.so.0
 
@@ -232,6 +233,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/xkbcli
 %dir %{_libexecdir}/xkbcommon
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-compile-compose
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-compile-keymap
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-how-to-type
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-evdev
@@ -239,6 +241,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-x11
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-list
 %{_mandir}/man1/xkbcli.1*
+%{_mandir}/man1/xkbcli-compile-compose.1*
 %{_mandir}/man1/xkbcli-compile-keymap.1*
 %{_mandir}/man1/xkbcli-how-to-type.1*
 %{_mandir}/man1/xkbcli-interactive-evdev.1*
