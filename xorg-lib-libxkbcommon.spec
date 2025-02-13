@@ -6,12 +6,12 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	1.7.0
+Version:	1.8.0
 Release:	1
 License:	MIT
 Group:		X11/Libraries
-Source0:	https://xkbcommon.org/download/libxkbcommon-%{version}.tar.xz
-# Source0-md5:	b05b1a0d473189efb2dd995dd944f152
+Source0:	https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-%{version}/xkbcommon-%{version}.tar.gz
+# Source0-md5:	e0bdc3555b3530d729d6d01afda52579
 URL:		https://xkbcommon.org/
 BuildRequires:	bison >= 2.4
 BuildRequires:	doxygen
@@ -19,7 +19,7 @@ BuildRequires:	flex
 BuildRequires:	libstdc++-devel >= 6:4.8.1
 BuildRequires:	libxcb-devel >= 1.10
 BuildRequires:	libxml2-devel >= 2.0
-BuildRequires:	meson >= 0.52.0
+BuildRequires:	meson >= 0.58.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	rpm-build >= 4.6
@@ -176,7 +176,7 @@ This package contains the static libxkbregistry library.
 Pakiet zawiera statyczną bibliotekę libxkbregistry.
 
 %prep
-%setup -q -n libxkbcommon-%{version}
+%setup -q -n libxkbcommon-xkbcommon-%{version}
 
 %build
 %meson \
@@ -239,6 +239,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libexecdir}/xkbcommon
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-compile-compose
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-compile-keymap
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-dump-keymap-wayland
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-dump-keymap-x11
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-how-to-type
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-evdev
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-wayland
@@ -247,6 +249,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xkbcli.1*
 %{_mandir}/man1/xkbcli-compile-compose.1*
 %{_mandir}/man1/xkbcli-compile-keymap.1*
+%{_mandir}/man1/xkbcli-dump-keymap-wayland.1*
+%{_mandir}/man1/xkbcli-dump-keymap-x11.1*
 %{_mandir}/man1/xkbcli-how-to-type.1*
 %{_mandir}/man1/xkbcli-interactive-evdev.1*
 %{_mandir}/man1/xkbcli-interactive-wayland.1*
