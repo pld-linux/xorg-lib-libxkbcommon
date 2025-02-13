@@ -23,7 +23,7 @@ BuildRequires:	meson >= 0.52.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.752
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 # wayland-client, wayland-scanner
 BuildRequires:	wayland-devel >= 1.2.0
@@ -179,21 +179,21 @@ Pakiet zawiera statyczną bibliotekę libxkbregistry.
 %setup -q -n libxkbcommon-%{version}
 
 %build
-%meson build \
+%meson \
 	%{!?with_static_libs:--default-library=shared} \
 	-Dbash-completion-path=%{bash_compdir} \
 	-Denable-docs=true
 
-%ninja_build -C build
+%meson_build
 
 %if %{with tests}
-%ninja_test -C build
+%meson_test
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 # packaged as %doc in -apidocs
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/libxkbcommon
