@@ -35,6 +35,10 @@ BuildRequires:	xorg-xserver-Xvfb
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%if %{with tests}
+%define		filterout_cpp	-DNDEBUG
+%endif
+
 %description
 libxkbcommon is a keymap compiler and support library which processes
 a reduced subset of keymaps as defined by the XKB specification.
