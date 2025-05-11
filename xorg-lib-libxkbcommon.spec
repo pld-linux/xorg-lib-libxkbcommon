@@ -52,7 +52,7 @@ specyfikacji XKB.
 Summary:	Header files for libxkbcommon library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libxkbcommon
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 This package contains the header files needed to develop programs that
@@ -66,7 +66,7 @@ używających biblioteki libxkbcommon.
 Summary:	Static libxkbcommon library
 Summary(pl.UTF-8):	Biblioteka statyczna libxkbcommon
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
 
 %description static
 This package contains the static libxkbcommon library.
@@ -78,10 +78,10 @@ Pakiet zawiera statyczną bibliotekę libxkbcommon.
 Summary:	Tools to interact with XKB keymaps
 Summary(pl.UTF-8):	Narzędzia do współpracy z mapowaniami klawiszy XKB
 Group:		Applications
-Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-x11 = %{version}-%{release}
-Requires:	libxkbregistry = %{version}-%{release}
-Requires:	wayland >= 1.2.0
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	%{name}-x11%{?_isa} = %{version}-%{release}
+Requires:	libxkbregistry%{?_isa} = %{version}-%{release}
+Requires:	wayland%{?_isa} >= 1.2.0
 
 %description tools
 Tools to interact with XKB keymaps.
@@ -93,8 +93,8 @@ Narzędzia do współpracy z mapowaniami klawiszy XKB.
 Summary:	X11 support for XKB library
 Summary(pl.UTF-8):	Obsługa X11 dla biblioteki XKB
 Group:		X11/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	libxcb >= 1.10
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	libxcb%{?_isa} >= 1.10
 
 %description x11
 X11 support for XKB library.
@@ -106,9 +106,9 @@ Obsługa X11 dla biblioteki XKB.
 Summary:	Header file for libxkbcommon-x11 library
 Summary(pl.UTF-8):	Plik nagłówkowy biblioteki libxkbcommon-x11
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-Requires:	%{name}-x11 = %{version}-%{release}
-Requires:	libxcb-devel >= 1.10
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
+Requires:	%{name}-x11%{?_isa} = %{version}-%{release}
+Requires:	libxcb-devel%{?_isa} >= 1.10
 
 %description x11-devel
 Header file for libxkbcommon-x11 library.
@@ -120,7 +120,7 @@ Plik nagłówkowy biblioteki libxkbcommon-x11.
 Summary:	Static libxkbcommon-x11 library
 Summary(pl.UTF-8):	Statyczna biblioteka libxkbcommon-x11
 Group:		X11/Development/Libraries
-Requires:	%{name}-x11-devel = %{version}-%{release}
+Requires:	%{name}-x11-devel%{?_isa} = %{version}-%{release}
 
 %description x11-static
 Static libxkbcommon-x11 library.
@@ -144,7 +144,7 @@ Dokumentacja API bibliotek libxkbcommon.
 Summary:	Library to query available RMLVO
 Summary(pl.UTF-8):	Biblioteka do odpytywania dostępnych RMLVO
 Group:		Development/Libraries
-Requires:	libxml2 >= 2.0
+Requires:	libxml2%{?_isa} >= 2.0
 
 %description -n libxkbregistry
 Library to query available RMLVO.
@@ -156,8 +156,8 @@ Biblioteka do odpytywania dostępnych RMLVO.
 Summary:	Header files for libxkbregistry library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libxkbregistry
 Group:		Development/Libraries
-Requires:	libxkbregistry = %{version}-%{release}
-Requires:	libxml2-devel >= 2.0
+Requires:	libxkbregistry%{?_isa} = %{version}-%{release}
+Requires:	libxml2-devel%{?_isa} >= 2.0
 
 %description -n libxkbregistry-devel
 This package contains the header files needed to develop programs that
@@ -171,7 +171,7 @@ używających biblioteki libxkbregistry.
 Summary:	Static libxkbregistry library
 Summary(pl.UTF-8):	Biblioteka statyczna libxkbregistry
 Group:		Development/Libraries
-Requires:	libxkbregistry-devel = %{version}-%{release}
+Requires:	libxkbregistry-devel%{?_isa} = %{version}-%{release}
 
 %description -n libxkbregistry-static
 This package contains the static libxkbregistry library.
