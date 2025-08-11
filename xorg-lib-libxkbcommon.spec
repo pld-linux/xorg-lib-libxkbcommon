@@ -6,14 +6,14 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	1.10.0
-Release:	2
+Version:	1.11.0
+Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-%{version}/xkbcommon-%{version}.tar.gz
-# Source0-md5:	fff567d6841b9127477c303f1e8deb22
+# Source0-md5:	2381acc1facd85074570a08c629eb5ba
 URL:		https://xkbcommon.org/
-BuildRequires:	bison >= 2.4
+BuildRequires:	bison >= 3.6
 BuildRequires:	doxygen
 BuildRequires:	flex
 BuildRequires:	libstdc++-devel >= 6:4.8.1
@@ -27,7 +27,7 @@ BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 # wayland-client, wayland-scanner
 BuildRequires:	wayland-devel >= 1.2.0
-BuildRequires:	wayland-protocols >= 1.12
+BuildRequires:	wayland-protocols >= 1.15
 BuildRequires:	xz
 %if %{with tests}
 BuildRequires:	xorg-app-xkbcomp
@@ -243,9 +243,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libexecdir}/xkbcommon
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-compile-compose
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-compile-keymap
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-dump-keymap
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-dump-keymap-wayland
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-dump-keymap-x11
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-how-to-type
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-evdev
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-wayland
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-x11
