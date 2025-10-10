@@ -6,12 +6,12 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	1.11.0
+Version:	1.12.0
 Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-%{version}/xkbcommon-%{version}.tar.gz
-# Source0-md5:	2381acc1facd85074570a08c629eb5ba
+# Source0-md5:	d2dd675b24a88f41790deaf688a81bc0
 URL:		https://xkbcommon.org/
 BuildRequires:	bison >= 3.6
 BuildRequires:	doxygen
@@ -28,6 +28,7 @@ BuildRequires:	tar >= 1:1.22
 # wayland-client, wayland-scanner
 BuildRequires:	wayland-devel >= 1.2.0
 BuildRequires:	wayland-protocols >= 1.15
+BuildRequires:	xkeyboard-config
 BuildRequires:	xz
 %if %{with tests}
 BuildRequires:	xorg-app-xkbcomp
