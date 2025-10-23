@@ -31,6 +31,7 @@ BuildRequires:	wayland-protocols >= 1.15
 BuildRequires:	xkeyboard-config
 BuildRequires:	xz
 %if %{with tests}
+BuildRequires:	xorg-app-setxkbmap
 BuildRequires:	xorg-app-xkbcomp
 BuildRequires:	xorg-xserver-Xvfb
 %endif
