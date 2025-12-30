@@ -6,12 +6,12 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	1.12.3
+Version:	1.13.1
 Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-%{version}/xkbcommon-%{version}.tar.gz
-# Source0-md5:	a212ad9025ff96c94a4fcfeb5f1ac903
+# Source0-md5:	80f106737263eb7e19d6b4f7e0d82287
 URL:		https://xkbcommon.org/
 BuildRequires:	bison >= 3.6
 BuildRequires:	doxygen
@@ -219,12 +219,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc LICENSE NEWS.md README.md
-%attr(755,root,root) %{_libdir}/libxkbcommon.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libxkbcommon.so.0
+%{_libdir}/libxkbcommon.so.*.*.*
+%ghost %{_libdir}/libxkbcommon.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxkbcommon.so
+%{_libdir}/libxkbcommon.so
 %dir %{_includedir}/xkbcommon
 %{_includedir}/xkbcommon/xkbcommon.h
 %{_includedir}/xkbcommon/xkbcommon-compat.h
@@ -268,12 +268,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files x11
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxkbcommon-x11.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libxkbcommon-x11.so.0
+%{_libdir}/libxkbcommon-x11.so.*.*.*
+%ghost %{_libdir}/libxkbcommon-x11.so.0
 
 %files x11-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxkbcommon-x11.so
+%{_libdir}/libxkbcommon-x11.so
 %{_includedir}/xkbcommon/xkbcommon-x11.h
 %{_pkgconfigdir}/xkbcommon-x11.pc
 
@@ -289,12 +289,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libxkbregistry
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxkbregistry.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libxkbregistry.so.0
+%{_libdir}/libxkbregistry.so.*.*.*
+%ghost %{_libdir}/libxkbregistry.so.0
 
 %files -n libxkbregistry-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libxkbregistry.so
+%{_libdir}/libxkbregistry.so
 %{_includedir}/xkbcommon/xkbregistry.h
 %{_pkgconfigdir}/xkbregistry.pc
 
