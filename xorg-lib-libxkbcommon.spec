@@ -6,12 +6,12 @@
 Summary:	xkbcommon library - keymap compiler and support library
 Summary(pl.UTF-8):	Biblioteka xkbcommon - kompilatora i obsługi map klawiszy
 Name:		xorg-lib-libxkbcommon
-Version:	1.13.1
-Release:	2
+Version:	1.13.2
+Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-%{version}/xkbcommon-%{version}.tar.gz
-# Source0-md5:	80f106737263eb7e19d6b4f7e0d82287
+# Source0-md5:	693d96f17c1e9216e34495fa09643ab7
 URL:		https://xkbcommon.org/
 BuildRequires:	bison >= 3.6
 BuildRequires:	doxygen
@@ -19,7 +19,7 @@ BuildRequires:	flex
 BuildRequires:	libstdc++-devel >= 6:4.8.1
 BuildRequires:	libxcb-devel >= 1.10
 BuildRequires:	libxml2-devel >= 2.0
-BuildRequires:	meson >= 0.58.0
+BuildRequires:	meson >= 1.4.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	rpm-build >= 4.6
@@ -249,6 +249,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-dump-keymap-wayland
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-dump-keymap-x11
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-how-to-type
+%attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-info
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-evdev
 %attr(755,root,root) %{_libexecdir}/xkbcommon/xkbcli-interactive-wayland
@@ -260,6 +261,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xkbcli-dump-keymap-wayland.1*
 %{_mandir}/man1/xkbcli-dump-keymap-x11.1*
 %{_mandir}/man1/xkbcli-how-to-type.1*
+%{_mandir}/man1/xkbcli-info.1*
 %{_mandir}/man1/xkbcli-interactive-evdev.1*
 %{_mandir}/man1/xkbcli-interactive-wayland.1*
 %{_mandir}/man1/xkbcli-interactive-x11.1*
